@@ -16,7 +16,16 @@
              xmlns:local="clr-namespace:WarehouseManagement.UserControlWM"
              mc:Ignorable="d" 
              Name="ucControlBar"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              d:DesignHeight="450" d:DesignWidth="800">
+
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseLeftButtonDown">
+            <i:InvokeCommandAction Command="{Binding DragWindowCommand}" CommandParameter="{Binding ElementName=ucControlBar}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <Grid>
         <materialDesign:ColorZone
   Mode="PrimaryLight"
@@ -53,7 +62,7 @@
                     <TextBlock
         VerticalAlignment="Center"
         Margin="16 0 0 0"
-        Text="Material Design In XAML Toolkit" />
+        Text="{Binding Tag, ElementName=ucControlBar}" />
                 </StackPanel>
             </DockPanel>
         </materialDesign:ColorZone>

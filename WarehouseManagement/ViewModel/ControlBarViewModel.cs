@@ -13,6 +13,7 @@ namespace WarehouseManagement.ViewModel
         public ICommand CloseWindowCommand { get; set; }
         public ICommand MinimizeWindowCommand { get; set; }
         public ICommand MaximizeWindowCommand { get; set; }
+        public ICommand DragWindowCommand { get; set; }
         #endregion
         public ControlBarViewModel()
         {
@@ -45,6 +46,16 @@ namespace WarehouseManagement.ViewModel
                         window.WindowState = WindowState.Maximized;
                     else
                         window.WindowState = WindowState.Normal;
+                }
+
+            });
+            DragWindowCommand = new RelayCommand<UserControl>((p) => { return p == null ? false : true; }, (p) =>
+            {
+                FrameworkElement windowSelected = GetWindowParent(p);
+                var window = windowSelected as Window;
+                if (window != null)
+                {
+                    window.DragMove();
                 }
 
             });
